@@ -7,11 +7,29 @@
 
 import SwiftUI
 
+class AppState: ObservableObject {
+    @Published var screenOpen: Int
+    
+    init(screenOpen: Int){
+        self.screenOpen = screenOpen
+    }
+}
+
 @main
-struct LiterateApp: App {
+struct literateApp: App {
+    @ObservedObject var appState = AppState(screenOpen: 0)
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            if(self.appState.screenOpen == 1 ){
+                AddBookView()
+                    .environmentObject(appState)
+            } else {
+                HomeView()
+                    .environmentObject(appState)
+            }
         }
     }
 }
+
