@@ -8,8 +8,9 @@
 import Foundation
 import AVFoundation
 import SwiftUI
+import UIKit
 
-class Camera: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
+class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var photoTaken = false
     @Published var photoSaved = false
     @Published var warning = true
@@ -17,6 +18,8 @@ class Camera: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var v : AVCaptureVideoPreviewLayer!
     @Published var output = AVCapturePhotoOutput()
     @Published var photoData = Data(count: 0)
+    private var photosTaken = 0
+    private var context = CoreDataManager.shared.persistentContainer.viewContext
     
     
     func cameraPermission() {
@@ -92,12 +95,19 @@ class Camera: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     
     
     func savePhoto() {
-            print("test1")
-            let image = UIImage(data: self.photoData)!
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-            self.photoSaved = true
-            print("Photo Sucessfully Saved!")
-        }
+        self.photosTaken += 1
+        let image = UIImage(data: self.photoData)!
+        
+        let photo = Photo(context: self.context)
+        
+        photo.name = "image" + String(self.photosTaken)
+        photo.image = image
+        
+        try? self.context.save()
+        
+        self.photoSaved = true
+        print("Photo Sucessfully Saved!")
+    }
     
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -118,8 +128,9 @@ class Camera: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
 
 
 struct CameraView: UIViewRepresentable {
-
-    @ObservedObject var c : Camera
+    
+    
+    @ObservedObject var c : CameraModel
     
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame : UIScreen.main.bounds)
@@ -138,4 +149,5 @@ struct CameraView: UIViewRepresentable {
     }
     
 }
+
 

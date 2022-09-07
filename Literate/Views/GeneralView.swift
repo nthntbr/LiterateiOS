@@ -79,7 +79,7 @@ struct BottomBar: View {
                    label: {Image(systemName: homeIcon)})
             .frame(height: (screenHeight * 0.05))
             Spacer()
-            Button(action: {},
+            Button(action: {appState.screenOpen = 2},
                    label: {Image(systemName: libraryIcon)})
             .frame(height: (screenHeight * 0.05))
             Spacer()
