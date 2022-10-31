@@ -20,6 +20,11 @@ class AppState: ObservableObject {
 class PlaybackState: ObservableObject {
     @Published var pageOpen: Int
     @Published var bookOpen: String
+
+    var pageText: [String] {
+        let dict = self.book.1
+        return dict[self.pageOpen]!
+    }
     var book: (String, [Int: [String]]) {
         let pbm = PlaybackModel(bookOpen: self.bookOpen)
         return pbm.book
@@ -29,7 +34,6 @@ class PlaybackState: ObservableObject {
     init(pageOpen: Int, bookOpen: String) {
         self.pageOpen = pageOpen
         self.bookOpen = bookOpen
-
         
     }
 }

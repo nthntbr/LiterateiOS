@@ -12,9 +12,13 @@
 		901FD39D2829DC41006B48EC /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901FD39C2829DC41006B48EC /* UIImageTransformer.swift */; };
 		901FD39F2829FBD8006B48EC /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901FD39E2829FBD8006B48EC /* PhotoViewModel.swift */; };
 		901FD3A4282B3514006B48EC /* DocumentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901FD3A3282B3514006B48EC /* DocumentPickerViewModel.swift */; };
+		9044524C28FF6A15001D51C9 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044524B28FF6A15001D51C9 /* CameraHandler.swift */; };
 		90569B232832EB59009A121E /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90569B222832EB59009A121E /* PhotoPickerViewModel.swift */; };
 		90756CBB28C80216003376AE /* PlaybackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90756CBA28C80216003376AE /* PlaybackModel.swift */; };
 		90756CBD28C83E32003376AE /* LibraryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90756CBC28C83E32003376AE /* LibraryEditView.swift */; };
+		907773C928F0FD130040EF10 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907773C828F0FD130040EF10 /* CameraPreviewView.swift */; };
+		907773CD28F764A20040EF10 /* LibraryShelvesBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907773CC28F764A20040EF10 /* LibraryShelvesBodyView.swift */; };
+		907773CF28F764E60040EF10 /* ShelfBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907773CE28F764E60040EF10 /* ShelfBodyView.swift */; };
 		9088F5032829A0BD001B7D39 /* LiterateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9088F5022829A0BD001B7D39 /* LiterateApp.swift */; };
 		9088F5072829A0C2001B7D39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9088F5062829A0C2001B7D39 /* Assets.xcassets */; };
 		9088F50A2829A0C2001B7D39 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9088F5092829A0C2001B7D39 /* Preview Assets.xcassets */; };
@@ -31,7 +35,10 @@
 		9094173028C10D2000FE30EA /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9094172F28C10D2000FE30EA /* PlaybackView.swift */; };
 		9094173228C1130F00FE30EA /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9094173128C1130F00FE30EA /* LibraryView.swift */; };
 		9094173528C2B15600FE30EA /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9094173428C2B15600FE30EA /* LibraryModel.swift */; };
+		90AB362528EDE4ED00F8A8B3 /* PlaybackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AB362428EDE4EC00F8A8B3 /* PlaybackViewModel.swift */; };
 		90E340C328BEEF97009DDC07 /* FinalizeBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E340C228BEEF97009DDC07 /* FinalizeBookViewModel.swift */; };
+		90EED7AF28D2802B00FDAEBD /* PlaybackControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EED7AE28D2802A00FDAEBD /* PlaybackControlsView.swift */; };
+		90FB8CC628C9210100BF3D96 /* LibraryEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FB8CC528C9210100BF3D96 /* LibraryEditViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +64,13 @@
 		901FD39C2829DC41006B48EC /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
 		901FD39E2829FBD8006B48EC /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		901FD3A3282B3514006B48EC /* DocumentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewModel.swift; sourceTree = "<group>"; };
+		9044524B28FF6A15001D51C9 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
 		90569B222832EB59009A121E /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
 		90756CBA28C80216003376AE /* PlaybackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackModel.swift; sourceTree = "<group>"; };
 		90756CBC28C83E32003376AE /* LibraryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryEditView.swift; sourceTree = "<group>"; };
+		907773C828F0FD130040EF10 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		907773CC28F764A20040EF10 /* LibraryShelvesBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryShelvesBodyView.swift; sourceTree = "<group>"; };
+		907773CE28F764E60040EF10 /* ShelfBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfBodyView.swift; sourceTree = "<group>"; };
 		9088F4FF2829A0BD001B7D39 /* Literate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Literate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9088F5022829A0BD001B7D39 /* LiterateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiterateApp.swift; sourceTree = "<group>"; };
 		9088F5062829A0C2001B7D39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +91,11 @@
 		9094172F28C10D2000FE30EA /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		9094173128C1130F00FE30EA /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		9094173428C2B15600FE30EA /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
+		90AB362228EB8C3700F8A8B3 /* AVFAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFAudio.framework; path = System/Library/Frameworks/AVFAudio.framework; sourceTree = SDKROOT; };
+		90AB362428EDE4EC00F8A8B3 /* PlaybackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaybackViewModel.swift; path = /Users/nathanteuber/Desktop/textToSpeechApp/Official/Literate/Literate/Views/PlaybackView/PlaybackViewModel.swift; sourceTree = "<absolute>"; };
 		90E340C228BEEF97009DDC07 /* FinalizeBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalizeBookViewModel.swift; sourceTree = "<group>"; };
+		90EED7AE28D2802A00FDAEBD /* PlaybackControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackControlsView.swift; sourceTree = "<group>"; };
+		90FB8CC528C9210100BF3D96 /* LibraryEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryEditViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				9094172F28C10D2000FE30EA /* PlaybackView.swift */,
+				90AB362428EDE4EC00F8A8B3 /* PlaybackViewModel.swift */,
+				90EED7AE28D2802A00FDAEBD /* PlaybackControlsView.swift */,
 			);
 			path = PlaybackView;
 			sourceTree = "<group>";
@@ -123,6 +140,7 @@
 				9088F5122829A0C3001B7D39 /* LiterateTests */,
 				9088F51C2829A0C3001B7D39 /* LiterateUITests */,
 				9088F5002829A0BD001B7D39 /* Products */,
+				90AB362128EB8C3600F8A8B3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +228,8 @@
 				90569B222832EB59009A121E /* PhotoPickerViewModel.swift */,
 				908B08FA2876954F000D914C /* TextRecognitionViewModel.swift */,
 				90E340C228BEEF97009DDC07 /* FinalizeBookViewModel.swift */,
+				907773C828F0FD130040EF10 /* CameraPreviewView.swift */,
+				9044524B28FF6A15001D51C9 /* CameraHandler.swift */,
 			);
 			path = AddBookView;
 			sourceTree = "<group>";
@@ -218,9 +238,20 @@
 			isa = PBXGroup;
 			children = (
 				9094173128C1130F00FE30EA /* LibraryView.swift */,
+				907773CE28F764E60040EF10 /* ShelfBodyView.swift */,
 				90756CBC28C83E32003376AE /* LibraryEditView.swift */,
+				90FB8CC528C9210100BF3D96 /* LibraryEditViewModel.swift */,
+				907773CC28F764A20040EF10 /* LibraryShelvesBodyView.swift */,
 			);
 			path = LibraryView;
+			sourceTree = "<group>";
+		};
+		90AB362128EB8C3600F8A8B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90AB362228EB8C3700F8A8B3 /* AVFAudio.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,19 +389,26 @@
 				90756CBD28C83E32003376AE /* LibraryEditView.swift in Sources */,
 				901FD3972829CFCC006B48EC /* Photo.swift in Sources */,
 				908B08FB2876954F000D914C /* TextRecognitionViewModel.swift in Sources */,
+				90FB8CC628C9210100BF3D96 /* LibraryEditViewModel.swift in Sources */,
 				901FD39D2829DC41006B48EC /* UIImageTransformer.swift in Sources */,
 				901FD3A4282B3514006B48EC /* DocumentPickerViewModel.swift in Sources */,
+				907773C928F0FD130040EF10 /* CameraPreviewView.swift in Sources */,
 				9088F5032829A0BD001B7D39 /* LiterateApp.swift in Sources */,
 				90569B232832EB59009A121E /* PhotoPickerViewModel.swift in Sources */,
 				9094173528C2B15600FE30EA /* LibraryModel.swift in Sources */,
+				90EED7AF28D2802B00FDAEBD /* PlaybackControlsView.swift in Sources */,
+				907773CD28F764A20040EF10 /* LibraryShelvesBodyView.swift in Sources */,
 				9088F5332829A405001B7D39 /* GeneralView.swift in Sources */,
 				9094172E28C1025500FE30EA /* Book.swift in Sources */,
 				9094173228C1130F00FE30EA /* LibraryView.swift in Sources */,
 				9088F5312829A3A2001B7D39 /* AddBookView.swift in Sources */,
 				9088F5362829A63F001B7D39 /* CameraViewModel.swift in Sources */,
 				901FD3992829D10B006B48EC /* CoreDataManager.swift in Sources */,
+				90AB362528EDE4ED00F8A8B3 /* PlaybackViewModel.swift in Sources */,
+				907773CF28F764E60040EF10 /* ShelfBodyView.swift in Sources */,
 				9088F52F2829A391001B7D39 /* HomeView.swift in Sources */,
 				9094172C28C0230700FE30EA /* CoreDataModel.xcdatamodeld in Sources */,
+				9044524C28FF6A15001D51C9 /* CameraHandler.swift in Sources */,
 				901FD39F2829FBD8006B48EC /* PhotoViewModel.swift in Sources */,
 				9094173028C10D2000FE30EA /* PlaybackView.swift in Sources */,
 			);
@@ -535,11 +573,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Literate/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -565,11 +605,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Literate/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

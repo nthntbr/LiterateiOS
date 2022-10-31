@@ -1,22 +1,21 @@
 //
-//  LibraryEditView.swift
+//  ShelfBodyView.swift
 //  Literate
 //
-//  Created by Nathan Teuber on 9/6/22.
+//  Created by Nathan Teuber on 10/12/22.
 //
 
-import Foundation
 import SwiftUI
 
-struct LibraryEditView: View {
-    @EnvironmentObject var libraryState: LibraryState
-    @EnvironmentObject var appState: AppState
-    @ObservedObject var levm = LibraryEditViewModel(toDeleteList: [])
 
-    
+struct ShelfBodyView: View {
+    @EnvironmentObject var libraryState: LibraryState
+    @EnvironmentObject var playbackState: PlaybackState
+    @EnvironmentObject var appState: AppState
+
     let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
-    let colorList: [Color] = [Color.blue, Color.green, Color.indigo, Color.mint, Color.orange, Color.pink, Color.purple, Color.red, Color.teal, Color.yellow]
+    
     
     var body: some View {
         let shelf = libraryState.shelfOpen
@@ -40,7 +39,7 @@ struct LibraryEditView: View {
             
             ScrollView{
                 ForEach(content, id: \.color) { element in
-                    let isSelected = self.levm.toDeleteList.contains(element.bookName)
+                    
                     HStack{
                         RoundedRectangle(cornerSize: CGSize(width: ((screenWidth * 0.08) * 0.25), height: ((screenWidth * 0.08) * 0.25)))
                             .size(width: (screenWidth * 0.08), height: (screenWidth * 0.08))
@@ -50,39 +49,15 @@ struct LibraryEditView: View {
                         Spacer().frame(width: ((screenWidth * 0.85) * 0.12))
                         Button(action: {
                             print("Book Selected!")
-                            if(isSelected) {
-                                var index = -1
-                                var count = 0
-                                for b in self.levm.toDeleteList {
-                                    if(b == element.bookName) {
-                                        index = count
-                                    }
-                                    count += 1
-                                }
-                                if(index > -1) {
-                                    self.levm.toDeleteList.remove(at: index)
-                                } else {
-                                    print("Error Deselecting Book")
-                                }
-                                
-                            } else {
-                                self.levm.toDeleteList.append(element.bookName)
-                            }
-                            
-                            
-                        }, label: {
-                            if(isSelected){
-                                Text(element.bookName)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.blue)
-                            } else {
-                                Text(element.bookName)
-                                    .foregroundColor(Color.blue)
-                            }
-                            
-                        }).frame(width: ((screenWidth * 0.85) * 0.8), alignment: .leading)
+                            appState.bookOpen = element.bookName
+                            playbackState.bookOpen = element.bookName
+                            appState.screenOpen = 3
+                        }, label: {Text(element.bookName)}).frame(width: ((screenWidth * 0.85) * 0.8), alignment: .leading)
+                        //Spacer().frame(width: ((screenWidth * 0.85) * 0.25))
                         
+
                     }.frame(width: (screenWidth * 0.85), height: (screenWidth * 0.08), alignment: .topTrailing)
+                        //.background(Color.red)
                 }
             }
             .frame(height: (viewHeight * 0.85), alignment: .center)
@@ -92,17 +67,50 @@ struct LibraryEditView: View {
                 Button(action: {self.libraryState.libraryBodyState = 0}, label: {Text("Back")})
                     .padding()
                 Spacer()
-                Button(action: {
-                    self.levm.deleteBooks()
-                    self.libraryState.refreshShelf()
-                    self.libraryState.libraryBodyState = 1
-                }, label: {Image(systemName: "trash").foregroundColor(Color.red)})
+                Button(action: {self.libraryState.libraryBodyState = 2}, label: {Text("Edit")})
+                    .foregroundColor(Color.red)
                     .padding()
                 Spacer()
             }
             .frame(width: screenWidth, height: (viewHeight * 0.075), alignment: .bottomTrailing)
-        }
+            
+            
+        }.frame(width: screenWidth, height: viewHeight)
     }
     
     
+}
+
+struct ShelfElement {
+    let color: Color
+    let bookName: String
+}
+
+struct ShelfContents {
+    let colorList = [Color(uiColor: UIColor(red: (255/255), green: (59/255), blue: (47/255), alpha: 1)), Color(uiColor: UIColor(red: (255/255), green: (149/255), blue: (28/255), alpha: 1)), Color(uiColor: UIColor(red: (255/255), green: (204/255), blue: (41/255), alpha: 1)), Color(uiColor: UIColor(red: (42/255), green: (200/255), blue: (97/255), alpha: 1)), Color(uiColor: UIColor(red: (85/255), green: (200/255), blue: (249/255), alpha: 1)), Color(uiColor: UIColor(red: (0/255), green: (122/255), blue: (252/255), alpha: 1)), Color(uiColor: UIColor(red: (87/255), green: (85/255), blue: (212/255), alpha: 1)), Color(uiColor: UIColor(red: (176/255), green: (83/255), blue: (219/255), alpha: 1)), Color(uiColor: UIColor(red: (255/255), green: (45/255), blue: (84/255), alpha: 1))]
+    var bookList: [String]
+    
+    init(bookList: [String]) {
+        self.bookList = bookList
+        
+    }
+    
+    func addElements() -> [ShelfElement]{
+        var content: [ShelfElement] = []
+        var count = 0
+        for book in bookList {
+            content.append(ShelfElement(color: colorList[count], bookName: book))
+            count += 1
+        }
+        return content
+        
+    }
+}
+
+
+
+struct ShelfBodyView_Previews: PreviewProvider {
+    static var previews: some View {
+        ShelfBodyView()
+    }
 }

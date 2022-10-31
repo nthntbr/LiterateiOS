@@ -38,7 +38,7 @@ class LibraryModel {
         if (self.userStoredLayout.isEmpty != true) {
             return self.userStoredLayout
         } else {
-            var layout: [(String, [String])] = [("", [])]
+            var layout: [(String, [String])] = []
             layout.append(("All Books", self.bookNameList))
             return layout
         }

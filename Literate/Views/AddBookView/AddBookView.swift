@@ -17,22 +17,31 @@ class AddBookState: ObservableObject {
 }
 
 struct AddBookView: View {
+    let screenHeight = UIScreen.main.bounds.height
+    let screenWidth = UIScreen.main.bounds.width
     let screen = 1
     @EnvironmentObject var appState: AppState
     var body: some View {
-        VStack {
+        ZStack {
+            //Copy for other pages
             HeaderView(titleText: "AddBookScreen")
                 .frame(alignment: .top)
+                .position(x: (screenWidth/2), y: (screenHeight * 0.02))
+                .zIndex(1)
             AddBookBodyView()
                 .frame(alignment: .center)
+                .position(x: (screenWidth/2), y: (screenHeight * 0.425))
             BottomBar(screen: screen)
                 .frame(alignment: .bottom)
+                .position(x: (screenWidth/2), y: (screenHeight * 0.8875))
+                .zIndex(1)
         }
         .frame(minWidth: 0,
             maxWidth: .infinity,
             minHeight: 0,
             maxHeight: .infinity)
         .background(Color.white)
+        
     }
 
 }
@@ -48,7 +57,9 @@ struct AddBookBodyView: View {
     var body: some View {
         // Maybe change if for a switch statement with enumeration
         if(self.addBookState.opperationType == 1){
-            AddBookCameraView()
+            //AddBookCameraView()
+                //.environmentObject(addBookState)
+            CameraContentView()
                 .environmentObject(addBookState)
                 
         } else if(self.addBookState.opperationType == 2){ // Not reached currently
@@ -92,6 +103,7 @@ struct AddBookBodyView: View {
     }
 }
 
+//Deprecated
 struct AddBookCameraView: View {
     @StateObject var c = CameraModel()
     @EnvironmentObject var addBookState: AddBookState
@@ -117,10 +129,10 @@ struct AddBookCameraView: View {
             }
             .position(x: (screenWidth * 0.825), y: (screenHeight * 0.725))
         if(c.photoTaken == true) {
-            VStack {
+            ScrollView {
                 PhotoView()
             }
-            .frame(width: (screenWidth * 0.25), height: (screenHeight * 0.8), alignment: .top)
+            .frame(width: (screenWidth * 0.25), height: (screenHeight * 0.9), alignment: .top)
             .background(Color.gray)
             .position(x: (screenWidth * 0.25)/2, y: ((screenHeight * 0.8)/2))
             .opacity(0.85)
@@ -194,10 +206,11 @@ struct AddBookPhotoLibraryView: View {
     var body: some View {
         
         VStack {
-            VStack {
+            ScrollView {
                 if imgView() != nil {
                     imgView()
                 }
+                
             }
             
             
@@ -254,7 +267,7 @@ struct FinalizeBookView: View {
     
     var body: some View {
         VStack {
-            HStack {
+            ScrollView {
                 PhotoView()
             }
             .frame(height: (screenHeight * 0.8) * 0.85)

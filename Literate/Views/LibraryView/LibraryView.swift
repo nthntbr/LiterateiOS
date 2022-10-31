@@ -9,9 +9,22 @@ import SwiftUI
 
 class LibraryState: ObservableObject {
     @Published var libraryBodyState: Int
+    @Published var shelfOpen: (String, [String])
     
-    init(libraryBodyState: Int){
+    init(libraryBodyState: Int, shelfOpen: (String, [String])){
         self.libraryBodyState = libraryBodyState
+        self.shelfOpen = shelfOpen
+    }
+    
+    func refreshShelf() {
+        let LM = LibraryModel()
+        let layout = LM.selectLayout()
+        let shelfName = shelfOpen.0
+        for shelfTuple in layout {
+            if(shelfTuple.0 == shelfName) {
+                self.shelfOpen = shelfTuple
+            }
+        }
     }
     
 }
@@ -47,23 +60,23 @@ struct LibraryBodyView: View {
     let screenWidth = UIScreen.main.bounds.width
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var playbackState: PlaybackState
-    @ObservedObject var libraryState = LibraryState(libraryBodyState: 0)
-    @State var shelf: (String, [String]) = ("", [])
+    @ObservedObject var libraryState = LibraryState(libraryBodyState: 0, shelfOpen: ("", []))
+    
     
     
     var body: some View {
         VStack {
             if(self.libraryState.libraryBodyState == 0) {
-                LibraryShelvesView(shelf: $shelf)
+                LibraryShelvesBodyView()
                     .environmentObject(libraryState)
             } else if(self.libraryState.libraryBodyState == 1) {
-                ShelfView(shelf: $shelf)
+                ShelfBodyView()
                     .environmentObject(libraryState)
                     .environmentObject(appState)
                     .environmentObject(playbackState)
                 
             } else if(self.libraryState.libraryBodyState == 2) {
-                LibraryEditView(shelf: $shelf)
+                LibraryEditView()
                     .environmentObject(libraryState)
                     .environmentObject(appState)
             }
@@ -74,85 +87,6 @@ struct LibraryBodyView: View {
     
     
 }
-
-struct LibraryShelvesView: View {
-    @Binding var shelf: (String, [String])
-    @EnvironmentObject var libraryState: LibraryState
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
-    //private var layout: [String: [String]]
-    
-    var body: some View {
-        let layout = getLayout()
-        VStack{
-            ForEach(layout, id: \.0) { shelfTuple in
-                Button(action: {
-                    shelf = shelfTuple
-                    self.libraryState.libraryBodyState = 1
-                    
-                }, label: {Text(shelfTuple.0)})
-            }
-        }
-    }
-    
-    func getLayout() -> [(String, [String])] {
-        let LM = LibraryModel()
-        return LM.selectLayout()
-    }
-}
-
-struct ShelfView: View {
-    @Binding var shelf: (String, [String])
-    @EnvironmentObject var libraryState: LibraryState
-    @EnvironmentObject var playbackState: PlaybackState
-    @EnvironmentObject var appState: AppState
-
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
-    
-    
-    var body: some View {
-        let viewHeight = (screenHeight * 0.8)
-        VStack{
-            let shelfName = shelf.0
-            let bookList = shelf.1
-            HStack {
-                Spacer()
-                Text(shelfName)
-                    .frame(alignment: .center)
-                    .padding()
-                Spacer()
-            }
-            .frame(width: screenWidth, height: (viewHeight * 0.075), alignment: .topLeading)
-            
-            
-            VStack{
-                ForEach(bookList, id: \.count) { bookName in
-                    Button(action: {
-                        print("Book Selected!")
-                        appState.bookOpen = bookName
-                        playbackState.bookOpen = bookName
-                        appState.screenOpen = 3
-                    }, label: {Text(bookName)})
-                        .padding()
-                }
-            }
-            .frame(height: (viewHeight * 0.85), alignment: .center)
-            
-            HStack {
-                Spacer()
-                Button(action: {self.libraryState.libraryBodyState = 0}, label: {Text("Back")})
-                    .padding()
-                Spacer()
-                Button(action: {}, label: <#T##() -> Label#>)
-            }
-            .frame(width: screenWidth, height: (viewHeight * 0.075), alignment: .bottomTrailing)
-            
-            
-        }.frame(width: screenWidth, height: viewHeight)
-    }
-}
-
 
 
 struct LibraryView_Previews: PreviewProvider {

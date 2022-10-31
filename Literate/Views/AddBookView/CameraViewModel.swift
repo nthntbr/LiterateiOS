@@ -17,7 +17,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var captureSession = AVCaptureSession()
     @Published var v : AVCaptureVideoPreviewLayer!
     @Published var output = AVCapturePhotoOutput()
-    @Published var photoData = Data(count: 0)
+    var photoData = Data(count: 0)
     private var photosTaken = 0
     private var context = CoreDataManager.shared.persistentContainer.viewContext
     
@@ -127,13 +127,25 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
 }
 
 
+
+
+
+
+
+
+
+
+
 struct CameraView: UIViewRepresentable {
-    
     
     @ObservedObject var c : CameraModel
     
     func makeUIView(context: Context) -> UIView {
-        let view = UIView(frame : UIScreen.main.bounds)
+        let screenHeight = UIScreen.main.bounds.height
+        let screenWidth = UIScreen.main.bounds.width
+        
+        let view = UIView(frame: CGRect(x: 0, y: CGFloat(screenHeight * -0.0094), width: screenWidth, height: (screenHeight * 0.9)))
+        
         
         c.v = AVCaptureVideoPreviewLayer(session: c.captureSession)
         c.v.frame = view.frame
@@ -151,3 +163,40 @@ struct CameraView: UIViewRepresentable {
 }
 
 
+class CaptureDeviceModel {
+    var captureSession = AVCaptureSession()
+    var output = AVCapturePhotoOutput()
+    
+    func BuildCaptureDevice() {
+        captureSession.beginConfiguration()
+        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video , position: .unspecified)
+        guard
+            let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
+            captureSession.canAddInput(videoDeviceInput)
+            else { return }
+        captureSession.addInput(videoDeviceInput)
+        
+        if(self.captureSession.canAddOutput(output)) {
+            self.output.isHighResolutionCaptureEnabled = true
+            self.output.maxPhotoQualityPrioritization = .quality
+            captureSession.sessionPreset = .photo
+            captureSession.addOutput(output)
+            captureSession.addOutput(output)
+        }
+        
+        captureSession.commitConfiguration()
+    }
+    
+}
+
+
+class PreviewView: UIView {
+    override class var layerClass: AnyClass {
+        return AVCaptureVideoPreviewLayer.self
+    }
+    
+    
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+        return layer as! AVCaptureVideoPreviewLayer
+    }
+}
